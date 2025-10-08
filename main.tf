@@ -27,13 +27,13 @@ module "ec2_2" {
   subnet_id        = module.vpc.pubsub2
 }
 
-module "ec2_3" {
-  source = "./module/ec2"
-  Name   = "${var.Name}-prod"
-  SG     = module.SG.aws_security_group_id
-  instance_profile = module.iam.instance_profile_name
-  subnet_id        = module.vpc.pubsub1
-}
+# module "ec2_3" {
+#   source = "./module/ec2"
+#   Name   = "${var.Name}-prod"
+#   SG     = module.SG.aws_security_group_id
+#   instance_profile = module.iam.instance_profile_name
+#   subnet_id        = module.vpc.pubsub1
+# }
 
 
 
