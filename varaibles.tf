@@ -2,10 +2,9 @@ variable "Name" {
   default = "LinuxServer"
 }
 
-variable "env" {
+variable "environment" {
+  type    = string
   default = "dev"
 }
-
-
 
 
