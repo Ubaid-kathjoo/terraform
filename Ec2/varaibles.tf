@@ -1,0 +1,8 @@
+variable "Name" {
+  default = "LinuxServer"
+}
+
+
+
+
+
