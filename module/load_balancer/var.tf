@@ -19,3 +19,6 @@ variable "ec2_2_id" {
 variable "ec2_3_id" {
   
 }
+variable "env" {
+  
+}
