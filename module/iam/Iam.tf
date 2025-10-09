@@ -1,12 +1,12 @@
 resource "aws_iam_role" "ec2_role" {
-  name = "my-ec2-s3-role"
+  name = "my-ec2-s3-role-${var.env}"
 
   assume_role_policy = file("${path.module}/policies/ec2_trust_policy.json.tpl")
 
 
 }
 resource "aws_iam_policy" "s3_access_policy" {
-  name = "S3-access-policy"
+  name = "S3-access-policy-${var.env}"
   policy = file("${path.module}/policies/s3_access_policy.json.tpl")
 
 }
@@ -21,7 +21,7 @@ resource "aws_iam_role_policy_attachment" "ssm_access" {
 }
 
 resource "aws_iam_instance_profile" "ec2_profile" {
-  name = "instnace-ec2-profile-role"
+  name = "instnace-ec2-profile-role-${var.env}"
   role = aws_iam_role.ec2_role.name
 }
 

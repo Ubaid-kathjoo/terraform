@@ -1,13 +1,16 @@
 module "iam" {
   source = "./module/iam"
+  env = var.env
 }
 module "SG"{
   source = "./module/security_groups"
   vpc_id = module.vpc.vpcid
+  env = var.env
 }
 
 module "vpc" {
   source = "./module/vpc"
+  env = var.env
 }
 
 
@@ -42,6 +45,7 @@ module "alb" {
   source  = "./module/load_balancer"
 
   vpc_id  = module.vpc.vpcid
+  env = var.env
 
   subnets = [
     module.vpc.pubsub1,
