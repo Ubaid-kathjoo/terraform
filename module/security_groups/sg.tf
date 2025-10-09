@@ -1,5 +1,5 @@
 resource "aws_security_group" "httpd" {
-  name        = "my_SG_for_ec2"
+  name        = "my_SG_for_ec2_${var.env}"
   description = "Allow HTTP and SSH inbound, all outbound traffic"
   vpc_id      = var.vpc_id
 
