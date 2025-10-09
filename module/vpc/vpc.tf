@@ -5,7 +5,7 @@ resource "aws_vpc" "main_vpc" {
   enable_dns_hostnames = true
 
   tags = {
-    Name = "main-vpc"
+    Name = "main-vpc-${var.env}"
   }
 }
 
@@ -14,7 +14,7 @@ resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.main_vpc.id
 
   tags = {
-    Name = "main-igw"
+    Name = "main-igw-${var.env}"
   }
 }
 
@@ -26,7 +26,7 @@ resource "aws_subnet" "public_subnet_1" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "public-subnet-1"
+    Name = "public-subnet-1-${var.env}"
   }
 }
 
@@ -38,7 +38,7 @@ resource "aws_subnet" "public_subnet_2" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "public-subnet-2"
+    Name = "public-subnet-2-${var.env}"
   }
 }
 
@@ -49,7 +49,7 @@ resource "aws_subnet" "private_subnet_1" {
   availability_zone = "ap-south-1a"
 
   tags = {
-    Name = "private-subnet-1"
+    Name = "private-subnet-1-${var.env}"
   }
 }
 
@@ -60,7 +60,7 @@ resource "aws_subnet" "private_subnet_2" {
   availability_zone = "ap-south-1b"
 
   tags = {
-    Name = "private-subnet-2"
+    Name = "private-subnet-2-${var.env}"
   }
 }
 
@@ -74,7 +74,7 @@ resource "aws_route_table" "public_rt" {
   }
 
   tags = {
-    Name = "public-route-table"
+    Name = "public-route-table-${var.env}"
   }
 }
 

@@ -1,19 +1,22 @@
 module "iam" {
   source = "./module/iam"
+  env = var.env
 }
 module "SG"{
   source = "./module/security_groups"
   vpc_id = module.vpc.vpcid
+  env = var.env
 }
 
 module "vpc" {
   source = "./module/vpc"
+  env = var.env
 }
 
 
 module "ec2_1" {
   source = "./module/ec2"
-  Name   = "${var.Name}-dev"
+  Name   = "${var.Name}-${var.env}"
   SG     = module.SG.aws_security_group_id
   instance_profile = module.iam.instance_profile_name
   subnet_id        = module.vpc.pubsub1
@@ -21,7 +24,7 @@ module "ec2_1" {
 
 module "ec2_2" {
   source = "./module/ec2"
-  Name   = "${var.Name}-stage"
+  Name   = "${var.Name}-${var.env}"
   SG     = module.SG.aws_security_group_id
   instance_profile = module.iam.instance_profile_name
   subnet_id        = module.vpc.pubsub2
@@ -29,7 +32,7 @@ module "ec2_2" {
 
 module "ec2_3" {
   source = "./module/ec2"
-  Name   = "${var.Name}-prod"
+  Name   = "${var.Name}-${var.env}"
   SG     = module.SG.aws_security_group_id
   instance_profile = module.iam.instance_profile_name
   subnet_id        = module.vpc.pubsub1
@@ -42,6 +45,7 @@ module "alb" {
   source  = "./module/load_balancer"
 
   vpc_id  = module.vpc.vpcid
+  env = var.env
 
   subnets = [
     module.vpc.pubsub1,

@@ -3,9 +3,7 @@ variable "Name" {
 }
 
 variable "env" {
-  default = "dev"
+
 }
-
-
 
 
