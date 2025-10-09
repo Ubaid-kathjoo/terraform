@@ -15,6 +15,7 @@ module "vpc" {
 
 
 module "ec2_1" {
+  count = var.env==dev ? 1:0
   source = "./module/ec2"
   Name   = "${var.Name}-${var.env}"
   SG     = module.SG.aws_security_group_id
@@ -23,6 +24,7 @@ module "ec2_1" {
 }
 
 module "ec2_2" {
+  count = var.env==stage ? 2:0
   source = "./module/ec2"
   Name   = "${var.Name}-${var.env}"
   SG     = module.SG.aws_security_group_id
@@ -31,6 +33,7 @@ module "ec2_2" {
 }
 
 module "ec2_3" {
+  count = var.env==prod ? 3:0
   source = "./module/ec2"
   Name   = "${var.Name}-${var.env}"
   SG     = module.SG.aws_security_group_id
