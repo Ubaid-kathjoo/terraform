@@ -44,19 +44,20 @@ module "ec2_3" {
 
 
 
-# module "alb" {
-#   source  = "./module/load_balancer"
+module "alb" {
+  source  = "./module/load_balancer"
 
-#   vpc_id  = module.vpc.vpcid
-#   env = var.env
+  vpc_id  = module.vpc.vpcid
+  env     = var.env
 
-#   subnets = [
-#     module.vpc.pubsub1,
-#     module.vpc.pubsub2
-#   ]
+  subnets = [
+    module.vpc.pubsub1,
+    module.vpc.pubsub2
+  ]
 
-#   SG       = module.SG.aws_security_group_id
-#   ec2_1_id = module.ec2_1.ec2_id
-#   ec2_2_id = module.ec2_2.ec2_id
-#   ec2_3_id = module.ec2_3.ec2_id
-# }
+  SG = module.SG.aws_security_group_id
+
+  ec2_1_id = module.ec2_1[*].ec2_id
+  ec2_2_id = module.ec2_2[*].ec2_id
+  ec2_3_id = module.ec2_3[*].ec2_id
+}
