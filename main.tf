@@ -58,6 +58,8 @@ module "alb" {
   SG = module.SG.aws_security_group_id
 
   ec2_1_id = module.ec2_1[*].ec2_id
-  ec2_2_id = module.ec2_2[*].ec2_id
-  ec2_3_id = module.ec2_3[*].ec2_id
+  #ec2_2_id = module.ec2_2[*].ec2_id
+  #ec2_3_id = module.ec2_3[*].ec2_id
+  ec2_2_id = [for e in module.ec2_2 : e.ec2_id]
+  ec2_3_id = [for e in module.ec2_3 : e.ec2_id]
 }
