@@ -36,7 +36,6 @@ resource "aws_lb_target_group_attachment" "ec2_2" {
   target_id        = var.ec2_2_id[*]
   port             = 80
 }
-
 resource "aws_lb_target_group_attachment" "ec2_3" {
   count = var.env == "prod" ? 1 : 0
   target_group_arn = aws_lb_target_group.this.arn
