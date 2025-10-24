@@ -35,13 +35,13 @@ resource "aws_lb_target_group_attachment" "ec2_1" {
 # }
 
 resource "aws_lb_target_group_attachment" "ec2_2" {
-  count = var.env == "stage" ? length(ec2_2_id) : 0
+  count = var.env == "stage" ? length(var.ec2_2_id) : 0
   target_group_arn = aws_lb_target_group.this.arn
   target_id        = var.ec2_2_id[count.index]
   port             = 80
 }
 resource "aws_lb_target_group_attachment" "ec2_3" {
-  count = var.env == "prod" ? length(ec2_3_id) : 0
+  count = var.env == "prod" ? length(var.ec2_3_id) : 0
   target_group_arn = aws_lb_target_group.this.arn
   target_id        = var.ec2_3_id[count.index]
   port             = 80
