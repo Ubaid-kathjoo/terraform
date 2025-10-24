@@ -24,22 +24,29 @@ resource "aws_lb_target_group" "this" {
 }
 
 resource "aws_lb_target_group_attachment" "ec2_1" {
+  count = var.env == "test" ? 1 : 0
   target_group_arn = aws_lb_target_group.this.arn
-  target_id        = var.ec2_1_id
+  target_id        = var.ec2_1_id[0]
   port             = 80
 }
+
+# locals {
+#   ec2_2_ids = [for e in module.ec2_2 : e.ec2_id]
+# }
 
 resource "aws_lb_target_group_attachment" "ec2_2" {
+  count = var.env == "stage" ? length(var.ec2_2_id) : 0
   target_group_arn = aws_lb_target_group.this.arn
-  target_id        = var.ec2_2_id
+  target_id        = var.ec2_2_id[count.index]
+  port             = 80
+}
+resource "aws_lb_target_group_attachment" "ec2_3" {
+  count = var.env == "prod" ? length(var.ec2_3_id) : 0
+  target_group_arn = aws_lb_target_group.this.arn
+  target_id        = var.ec2_3_id[count.index]
   port             = 80
 }
 
-resource "aws_lb_target_group_attachment" "ec2_3" {
-  target_group_arn = aws_lb_target_group.this.arn
-  target_id        = var.ec2_3_id
-  port             = 80
-}
 
 resource "aws_lb_listener" "http" {
   load_balancer_arn = aws_lb.this.arn
@@ -50,4 +57,7 @@ resource "aws_lb_listener" "http" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.this.arn
   }
+}
+output "alb_dns_name" {
+  value = aws_lb.this.dns_name
 }
