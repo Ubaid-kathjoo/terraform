@@ -26,20 +26,24 @@ resource "aws_lb_target_group" "this" {
 resource "aws_lb_target_group_attachment" "ec2_1" {
   count = var.env == "test" ? 1 : 0
   target_group_arn = aws_lb_target_group.this.arn
-  target_id        = var.ec2_1_id[*]
+  target_id        = var.ec2_1_id[0]
   port             = 80
 }
 
+locals {
+  ec2_2_ids = [for e in module.ec2_2 : e.ec2_id]
+}
+
 resource "aws_lb_target_group_attachment" "ec2_2" {
-  count = var.env == "stage" ? 1 : 0
+  count = var.env == "stage" ? length(local.ec2_2_ids) : 0
   target_group_arn = aws_lb_target_group.this.arn
-  target_id        = var.ec2_2_id[*]
+  target_id        = local.ec2_2_ids[count.index]
   port             = 80
 }
 resource "aws_lb_target_group_attachment" "ec2_3" {
-  count = var.env == "prod" ? 1 : 0
+  count = var.env == "prod" ? length(module.ec2_3) : 0
   target_group_arn = aws_lb_target_group.this.arn
-  target_id        = var.ec2_3_id[*]
+  target_id        = module.ec2_3[count.index]
   port             = 80
 }
 
