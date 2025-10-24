@@ -24,21 +24,21 @@ resource "aws_lb_target_group" "this" {
 }
 
 resource "aws_lb_target_group_attachment" "ec2_1" {
-  count            = var.env == "dev" ? toset(var.module.ec2_1[*]) : []
+  count            = var.env == "dev" 
   target_group_arn = aws_lb_target_group.this.arn
   target_id        = var.ec2_1_id[0]
   port             = 80
 }
 
 resource "aws_lb_target_group_attachment" "ec2_2" {
-  count            = var.env == "stage" ? toset(var.module.ec2_2[*]) : []
+  count            = var.env == "stage" 
   target_group_arn = aws_lb_target_group.this.arn
   target_id        = var.ec2_2_id[0]
   port             = 80
 }
 
 resource "aws_lb_target_group_attachment" "ec2_3" {
-  count            = var.env == "prod" ? toset(var.module.ec2_3_id[*]) : []
+  count            = var.env == "prod"
   target_group_arn = aws_lb_target_group.this.arn
   target_id        = var.ec2_3_id[0]
   port             = 80
