@@ -1,9 +1,6 @@
-variable "env_list" {
+variable "env" {
   
 }
 variable "my_project" {
-  
-}
-variable "bucket_name" {
   
 }

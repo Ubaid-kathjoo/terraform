@@ -65,19 +65,18 @@ module "alb" {
 }
 module "s3_dev" {
   source       = "./module/s3"
-  project_name = "myproject"
-  env          = "dev"
+   my_project = "myproject"
+  env = "dev"
 }
 
 module "s3_stage" {
   source       = "./module/s3"
-  project_name = "myproject"
+  my_project  = "myproject"
   env          = "stage"
 }
 
 module "s3_prod" {
   source       = "./module/s3"
-  project_name = "myproject"
+  my_project = "myproject"
   env          = "prod"
 }
-
