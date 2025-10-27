@@ -81,3 +81,7 @@ module "alb" {
 #   my_project = "myproject"
 #   env          = "prod"
 # }
+
+module "s3_dev" {
+  source = "./module/s3"
+}
