@@ -63,7 +63,18 @@ module "alb" {
   ec2_2_id = [for e in module.ec2_2 : e.ec2_id]
   ec2_3_id = [for e in module.ec2_3 : e.ec2_id]
 }
-module "s3" {
-  source        = "./s3"
-  project_name  = var.my_project
+module "s3_dev" {
+  source       = "./s3"
+  project_name = "my_project"
+  env          = "dev"
+}
+module "s3_stage" {
+  source       = "./s3"
+  project_name = "my_project"
+  env          = "stage"
+}
+module "s3_prod" {
+  source       = "./s3"
+  project_name = "my_project"
+  env          = "prod"
 }

@@ -1,6 +1,12 @@
 resource "aws_s3_bucket" "env_bucket" {
-  count = var.env == "dev" || var.env == "stage" || var.env == "prod" ? 1 : 0
+  bucket = "${var.my_project}-${var.bucket_name}" 
 
+  tags = {
+    Name        = "${var.my_project}-${var.bucket_name}" 
+    Environment = var.env
+  }
+}
+resource "aws_s3_bucket" "this" {
   bucket = "${var.my_project}-${var.env}-bucket"
 
   tags = {

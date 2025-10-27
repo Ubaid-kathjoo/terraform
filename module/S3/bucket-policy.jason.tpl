@@ -1,10 +1,4 @@
-resource "aws_s3_bucket_policy" "env_bucket_policy" {
-  count = var.env == "dev" || var.env == "stage" || var.env == "prod" ? 1 : 0
-
-  bucket = aws_s3_bucket.env_bucket[0].id
-
-  policy = jsonencode({
-    Version = "2012-10-17"
+Version = "2012-10-17"
     Statement = [
       {
         Sid       = "AllowAccountAccess"
@@ -19,7 +13,3 @@ resource "aws_s3_bucket_policy" "env_bucket_policy" {
         ]
       }
     ]
-  })
-}
-
-data "aws_caller_identity" "current" {}
