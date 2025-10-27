@@ -83,5 +83,5 @@ module "alb" {
 # }
 
 module "s3_dev" {
-  source = "./module/s3"
+  source = "./module/S3-bucket"
 }
