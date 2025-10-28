@@ -1,5 +1,5 @@
 module "iam" {
-  source = "./module/iam"
+  source = "./module/iam-role"
   env = var.env
 }
 module "SG"{
@@ -82,6 +82,28 @@ module "s3_prod" {
   my_project = "myproject"
   env          = "prod"
 }
+
+module "iam_test" {
+  source     = "./module/iam-role"
+  env        = "test"
+  s3_actions = ["s3:*"]                    # Full access
+}
+
+module "iam_stage" {
+  source     = "./module/iam-role"
+  env        = "stage"
+  s3_actions = ["s3:GetObject", "s3:PutObject"]  
+}
+
+module "iam_prod" {
+  source     = "./module/iam-role"
+  env        = "prod"
+  s3_actions = ["s3:GetObject", "s3:ListBucket"]
+}
+
+
+
+
 
 
 

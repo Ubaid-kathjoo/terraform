@@ -1,6 +1,7 @@
 resource "aws_iam_role" "ec2_role" {
   name = "my-ec2-s3-role-${var.env}"
 
+
   assume_role_policy = file("${path.module}/policies/ec2_trust_policy.json.tpl")
 
 
@@ -24,7 +25,6 @@ resource "aws_iam_instance_profile" "ec2_profile" {
   name = "instnace-ec2-profile-role-${var.env}"
   role = aws_iam_role.ec2_role.name
 }
-
 
 output "instance_profile_name" {
   value = aws_iam_instance_profile.ec2_profile.name
