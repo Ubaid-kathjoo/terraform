@@ -4,6 +4,6 @@ resource "aws_s3_bucket" "env_bucket" {
 }
 
 resource "aws_s3_bucket_policy" "this" {
-  bucket = aws_s3_bucket.env_bucket
+  bucket = aws_s3_bucket.env_bucket.id
   policy = file("${path.module}/policies/s3_bucket_policy.json.tpl")
 }
