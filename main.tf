@@ -1,7 +1,4 @@
-module "iam" {
-  source = "./module/iam-role"
-  env = var.env
-}
+
 module "SG"{
   source = "./module/security_groups"
   vpc_id = module.vpc.vpcid
@@ -87,18 +84,21 @@ module "iam_test" {
   source     = "./module/iam-role"
   env        = "test"
   s3_actions = ["s3:*"]
+  role-name   = "test-role"
 }
 
 module "iam_stage" {
   source     = "./module/iam-role"
   env        = "stage"
   s3_actions = ["s3:GetObject", "s3:PutObject"]  
+  role-name   = "stage-role"
   }
 
 module "iam_prod" {
   source     = "./module/iam-role"
   env        = "prod"
   s3_actions = ["s3:GetObject", "s3:ListBucket"]
+  role-name   = "prod-role"
 }
 
 
