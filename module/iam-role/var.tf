@@ -1,9 +1,9 @@
-# variable "env" {
+variable "env" {
   
-# }
-# variable "role-name" {
+}
+variable "role-name" {
   
-# }
-# variable "s3_actions" {
+}
+variable "s3_actions" {
   
-# }
+}

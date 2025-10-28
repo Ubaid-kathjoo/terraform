@@ -16,7 +16,7 @@ module "ec2_1" {
   source = "./module/ec2"
   Name   = "${var.Name}-${var.env}"
   SG     = module.SG.aws_security_group_id
-  instance_profile = module.iam.instance_profile_name
+  instance_profile = module.iam-role.instance_profile_name
   subnet_id        = module.vpc.pubsub1
 }
 
@@ -25,7 +25,7 @@ module "ec2_2" {
   source = "./module/ec2"
   Name   = "${var.Name}-${var.env}"
   SG     = module.SG.aws_security_group_id
-  instance_profile = module.iam.instance_profile_name
+  instance_profile = module.iam-role.instance_profile_name
   subnet_id        = module.vpc.pubsub2
 }
 
@@ -34,7 +34,7 @@ module "ec2_3" {
   source = "./module/ec2"
   Name   = "${var.Name}-${var.env}"
   SG     = module.SG.aws_security_group_id
-  instance_profile = module.iam.instance_profile_name
+  instance_profile = module.iam-role.instance_profile_name
   subnet_id        = module.vpc.pubsub1
 }
 
@@ -80,26 +80,26 @@ module "s3_prod" {
   env          = "prod"
 }
 
-# module "iam_test" {
-#   source     = "./module/iam-role"
-#   env        = "test"
-#   s3_actions = ["s3:*"]
-#   role-name   = "test-role"
-# }
+module "iam_test" {
+  source     = "./module/iam-role"
+  env        = "test"
+  s3_actions = ["s3:*"]
+  role-name   = "test-role"
+}
 
-# module "iam_stage" {
-#   source     = "./module/iam-role"
-#   env        = "stage"
-#   s3_actions = ["s3:GetObject", "s3:PutObject"]  
-#   role-name   = "stage-role"
-#   }
+module "iam_stage" {
+  source     = "./module/iam-role"
+  env        = "stage"
+  s3_actions = ["s3:GetObject", "s3:PutObject"]  
+  role-name   = "stage-role"
+  }
 
-# module "iam_prod" {
-#   source     = "./module/iam-role"
-#   env        = "prod"
-#   s3_actions = ["s3:GetObject", "s3:ListBucket"]
-#   role-name   = "prod-role"
-# }
+module "iam_prod" {
+  source     = "./module/iam-role"
+  env        = "prod"
+  s3_actions = ["s3:GetObject", "s3:ListBucket"]
+  role-name   = "prod-role"
+}
 
 
 
