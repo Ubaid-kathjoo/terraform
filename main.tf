@@ -1,4 +1,7 @@
-
+module "iam" {
+  source = "./module/iam-role"
+  env = var.env
+}
 module "SG"{
   source = "./module/security_groups"
   vpc_id = module.vpc.vpcid
@@ -83,7 +86,7 @@ module "s3_prod" {
 module "iam_test" {
   source     = "./module/iam-role"
   env        = "test"
-  s3_actions = ["s3:*"]                    # Full access
+  s3_actions = ["s3:*"]
 }
 
 module "iam_stage" {
