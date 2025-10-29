@@ -1,6 +1,2 @@
-variable env {
-
-}
-variable my_project {
-    
-}
+variable "my_project" {}
+variable "env" {}

@@ -2,10 +2,13 @@
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Sid": "AllowS3FullAccess",
+      "Sid": "EnvSpecificS3Access",
       "Effect": "Allow",
-      "Action": "s3:*",
-      "Resource": "*"
+      "Action": ${jsonencode(s3_actions)},
+      "Resource": [
+        "arn:aws:s3:::myproject-${env}-bucket-2025",
+        "arn:aws:s3:::myproject-${env}-bucket-2025/*"
+      ]
     }
   ]
 }
