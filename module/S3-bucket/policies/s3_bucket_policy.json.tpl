@@ -4,8 +4,7 @@
     {
       "Sid": "AllowAccountAccess",
       "Effect": "Allow",
-      "Principal": {
-        "AWS": "arn:aws:iam::${account_id}:root"
+      ""Principal":{"*"
       },
       "Action": "s3:*",
       "Resource": [
