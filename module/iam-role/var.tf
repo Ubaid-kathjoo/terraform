@@ -1,7 +1,7 @@
 variable "env" {
   
 }
-variable "role-name" {
+variable "role_name" {
   
 }
 variable "s3_actions" {
