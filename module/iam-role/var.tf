@@ -5,5 +5,5 @@ variable "role-name" {
   
 }
 variable "s3_actions" {
-  
+  type = list(string)
 }
