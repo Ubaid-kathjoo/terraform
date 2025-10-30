@@ -5,10 +5,10 @@ resource "aws_iam_role" "ec2_role" {
 
 }
 resource "aws_iam_policy" "s3_access_policy" {
-  name   = "${var.role-name}-policy-${var.env}"
+  name   = "${var.role_name}-policy-${var.env}"
 
   policy = templatefile("${path.module}/policies/s3_access_policy.json.tpl", {
-    env        = var.env,
+    env        = var.env
     s3_actions = var.s3_actions
   })
 }
@@ -20,11 +20,12 @@ resource "aws_iam_role_policy_attachment" "s3_access" {
 
 resource "aws_iam_role_policy_attachment" "ssm_access" {
   role       = aws_iam_role.ec2_role.name
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM"
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+
 }
 
 resource "aws_iam_instance_profile" "ec2_profile" {
-  name = "instnace-ec2-profile-role-${var.env}"
+  name = "instance-ec2-profile-${var.env}"
   role = aws_iam_role.ec2_role.name
 }
 
