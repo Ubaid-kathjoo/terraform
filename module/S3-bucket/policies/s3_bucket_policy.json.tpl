@@ -5,12 +5,12 @@
       "Sid": "AllowRoleAccess",
       "Effect": "Allow",
       "Principal": {
-        "AWS": "arn:aws:iam::${account_id}:role/my-ec2-s3-role-${env}"
+        "AWS": "arn:aws:iam::${var.account_id}:role/my-ec2-s3-role-${var.env}"
       },
       "Action": "s3:*",
       "Resource": [
-        "arn:aws:s3:::${bucket_name}",
-        "arn:aws:s3:::${bucket_name}/*"
+        "arn:aws:s3:::${var.bucket_name}",
+        "arn:aws:s3:::${var.bucket_name}/*"
       ]
     }
   ]
