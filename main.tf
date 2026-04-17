@@ -47,4 +47,5 @@ module "iam_prod" {
   env        = "prod"
   s3_actions = ["s3:GetObject", "s3:ListBucket"]
   role_name   = "prod-role"
+
 }
