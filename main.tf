@@ -5,6 +5,7 @@ module "s3_dev" {
   my_project = var.my_project
   env = var.env 
   account_id = "872515260579"
+   depends_on = [module.iam_test] 
 }
 
 module "s3_stage" {
