@@ -5,7 +5,9 @@
       "Sid": "AllowRoleAccess",
       "Effect": "Allow",
       "Principal": {
-        "AWS": "arn:aws:iam::${account_id}:role/my-ec2-s3-role-${env}"
+        "Principal": {
+  "AWS": "arn:aws:iam::${account_id}:root"
+}
       },
       "Action": "s3:*",
       "Resource": [
@@ -14,4 +16,4 @@
       ]
     }
   ]
-}
+} 
