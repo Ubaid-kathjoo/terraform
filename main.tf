@@ -29,7 +29,7 @@ module "s3_prod" {
 module "iam_test" {
   count = var.env == "dev" ? 1 : 0
   source     = "./module/iam-role"
-  env        = "var.env"
+  env        = var.env
   s3_actions = ["s3:*"]
   role_name   = "test-role"
 }
