@@ -45,6 +45,7 @@ module "s3_stage" {
   account_id = "872515260579"
 }
 
+
 module "s3_prod" {
   count = var.env == "prod" ? 1 : 0
   source       = "./module/S3-bucket"
