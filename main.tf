@@ -19,7 +19,7 @@ module "ec2_stage" {
 }
 
 module "ec2_prod" {
-  count = var.env == "prod" ? 1 : 0
+  count = var.env == "prod" ? 2 : 0
 
   source = "./module/ec2"
   env    = "prod"
