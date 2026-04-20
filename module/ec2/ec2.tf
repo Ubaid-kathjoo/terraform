@@ -12,8 +12,7 @@ resource "aws_instance" "this" {
               EOF
 
   tags = {
-    Name = "${var.env}-instance"
-  }
+  Name = "${var.env}-instance-new"
 }
 
 
