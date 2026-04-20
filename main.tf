@@ -1,3 +1,31 @@
+
+
+module "ec2_dev" {
+  count = var.env == "dev" ? 1 : 0
+
+  source = "./module/ec2"
+  env    = "dev"
+
+  instance_type = "t2.micro"
+}
+
+module "ec2_stage" {
+  count = var.env == "stage" ? 1 : 0
+
+  source = "./module/ec2"
+  env    = "stage"
+
+  instance_type = "t2.micro"
+}
+
+module "ec2_prod" {
+  count = var.env == "prod" ? 1 : 0
+
+  source = "./module/ec2"
+  env    = "prod"
+
+  instance_type = "t2.micro"
+}
 module "s3_dev" {
   count = var.env == "dev" ? 1 : 0
   source = "./module/S3-bucket"
