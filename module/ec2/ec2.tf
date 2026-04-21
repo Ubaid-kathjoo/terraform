@@ -13,8 +13,8 @@ resource "aws_instance" "this" {
 
   tags = {
   Name = "${var.env}-instance-new"
+ }
 }
-
 
 data "aws_ami" "latest" {
   most_recent = true
